@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мои объявления</title>
+</head>
+<body>
+
+    {% include "navbar.html" %}
+    <h2>👤 Мои объявления</h2>
+
+    {% for ad in ads %}
+    <div style="border:1px solid #ccc; margin-bottom:10px; padding:10px;">
+        <h3>{{ ad.title }}</h3>
+        <p>{{ ad.content }}</p>
+        <p>
+            <strong>Кв. {{ ad.apartment }}</strong>
+            {% if ad.author %} — {{ ad.author }}{% endif %}
+            {% if ad.hidden %}
+                <span style="color:orange;">🏳 Скрыто</span>
+            {% endif %}
+        </p>
+
+        <!-- Удалить -->
+        <form method="post" action="/ads/{{ ad.id }}/delete" 
+style="display:inline;">
+            <input type="hidden" name="student_id" value="{{ student_id 
+}}">
+            <button type="submit">Удалить</button>
+        </form>
+
+        <!-- Скрыть/Показать -->
+        <form method="post" action="/ads/{{ ad.id }}/toggle_hide" 
+style="display:inline;">
+            <input type="hidden" name="student_id" value="{{ student_id }}">
+            <button type="submit">
+                {% if ad.hidden %}Показать{% else %}Скрыть{% endif %}
+            </button>
+        </form>
+    </div>
+{% endfor %}
+
+             
+    <hr>
+    <p><a href="/ads?student_id={{ student_id }}">← Назад ко всем</a></p>
+</body>
+</html>
+

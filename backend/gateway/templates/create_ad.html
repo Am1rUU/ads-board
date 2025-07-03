@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Новое объявление</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+    <h2>Создать объявление</h2>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/ads/create" method="post">
+        <label>Номер квартиры:</label>
+        <input type="number" name="apartment" required><br>
+
+        <label>Заголовок:</label>
+        <input type="text" name="title" required><br>
+
+        <label>Текст:</label>
+        <textarea name="content" required></textarea><br>
+
+        <input type="hidden" name="student_id" value="{{ student_id }}">
+
+        <button type="submit">Опубликовать</button>
+    </form>
+</body>
+</html>
+

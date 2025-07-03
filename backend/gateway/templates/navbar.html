@@ -1,0 +1,12 @@
+<nav style="margin-bottom: 20px; padding: 10px; border-bottom: 1px solid 
+#ccc;">
+    <strong>🎓 UniBoard</strong>
+    {% if student_id %}
+        | <a href="/ads?student_id={{ student_id }}">📋 Все</a>
+        | <a href="/ads/mine?student_id={{ student_id }}">👤 Мои</a>
+	| <a href="/ads/create?student_id={{ student_id }}">+ Новое 
+объявление</a>
+
+    {% endif %}
+</nav>
+
